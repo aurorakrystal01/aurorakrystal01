@@ -56,7 +56,6 @@
             </svg>
         );
 
-        // --- 完整圖示定義 (已修復逗號問題) ---
         const Icons = {
             Youtube: (p) => <Icon d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z M9.75 15.02l5.75-3.27-5.75-3.27z" {...p} />,
             Instagram: (p) => <Icon d={["M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z", "M17.5 6.5h.01", "M16 2H8a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4z"]} {...p} />,
@@ -116,6 +115,7 @@
             setDailyTip(randomTip);
           };
 
+          // 🔴 已修正為您指定的網址
           const navLinks = [
             { name: '關於小歐', href: '#about' },
             { name: '核心哲學', href: '#philosophy' },
@@ -306,7 +306,7 @@
                         {link.name}
                       </a>
                     ))}
-                    <a href="https://aurorakrystal01.github.io/tarot/" target="_blank" rel="noreferrer" className="px-5 py-2 bg-slate-900 text-white rounded-full font-medium hover:bg-purple-600 transition-all flex items-center gap-2 shadow-lg hover:shadow-purple-200">
+                    <a href="https://aurorakrystal.github.io/" target="_blank" rel="noreferrer" className="px-5 py-2 bg-slate-900 text-white rounded-full font-medium hover:bg-purple-600 transition-all flex items-center gap-2 shadow-lg hover:shadow-purple-200">
                       <Icons.Sparkles size={18} /> 紫靈牌占卜
                     </a>
                   </div>
@@ -324,7 +324,7 @@
                         {link.name}
                       </a>
                     ))}
-                    <a href="https://aurorakrystal01.github.io/tarot/" target="_blank" rel="noreferrer" className="w-full text-center py-3 bg-slate-900 text-white rounded-lg font-medium mt-2">
+                    <a href="https://aurorakrystal.github.io/" target="_blank" rel="noreferrer" className="w-full text-center py-3 bg-slate-900 text-white rounded-lg font-medium mt-2">
                       紫靈牌占卜
                     </a>
                   </div>
