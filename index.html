@@ -35,15 +35,6 @@
 </head>
 <body class="bg-slate-50">
     
-    <div id="error-display" style="display:none; padding: 20px; background: #fee; color: #c00; border: 1px solid #c00; margin: 20px;"></div>
-    <script>
-        window.onerror = function(msg, url, line, col, error) {
-            var display = document.getElementById('error-display');
-            display.style.display = 'block';
-            display.innerHTML = "<strong>網頁發生錯誤：</strong><br>" + msg + "<br>Line: " + line;
-        };
-    </script>
-
     <div id="root"></div>
 
     <script type="text/babel">
@@ -56,6 +47,7 @@
             </svg>
         );
 
+        // --- 完整圖示集 (包含所有新舊圖示 + Smile) ---
         const Icons = {
             Youtube: (p) => <Icon d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z M9.75 15.02l5.75-3.27-5.75-3.27z" {...p} />,
             Instagram: (p) => <Icon d={["M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z", "M17.5 6.5h.01", "M16 2H8a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4z"]} {...p} />,
@@ -85,7 +77,13 @@
             Users: (p) => <Icon d={["M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2", "M16 3.13a4 4 0 0 1 0 7.75", "M23 21v-2a4 4 0 0 0-3-3.87", "M16 3.13a4 4 0 0 1 0 7.75"]} {...p} />,
             Target: (p) => <Icon d={["M22 12h-4", "M6 12H2", "M12 6V2", "M12 22v-4", "M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M12 12a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M12 12a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"]} {...p} />,
             Lightbulb: (p) => <Icon d={["M15 14c.2-1 .7-1.7 1.5-2.5 1-1 .9-2.6-.2-3.5a2.49 2.49 0 0 0-3.5 0c-1 1-1.1 2.6-.2 3.5.8.8 1.3 1.5 1.5 2.5", "M9 18h6", "M10 22h4"]} {...p} />,
-            Heart: (p) => <Icon d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="currentColor" {...p} />
+            Heart: (p) => <Icon d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="currentColor" {...p} />,
+            Compass: (p) => <Icon d={["M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z", "M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"]} {...p} />,
+            Gem: (p) => <Icon d="M6 3h12l4 6-10 13L2 9Z" {...p} />,
+            Smile: (p) => <Icon d={["M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z", "M8 14s1.5 2 4 2 4-2 4-2", "M9 9h.01", "M15 9h.01"]} {...p} />,
+            GraduationCap: (p) => <Icon d={["M22 10v6M2 10l10-5 10 5-10 5z", "M6 12v5c3.33 2 6.67 2 10 0v-5"]} {...p} />,
+            Video: (p) => <Icon d={["M23 7l-7 5 7 5V7z", "M14 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"]} {...p} />,
+            ArrowUpRight: (p) => <Icon d="M7 17l9.2-9.2M17 17V7H7" {...p} />
         };
 
         const App = () => {
@@ -115,13 +113,13 @@
             setDailyTip(randomTip);
           };
 
-          // 🔴 已修正為您指定的網址
           const navLinks = [
             { name: '關於小歐', href: '#about' },
             { name: '核心哲學', href: '#philosophy' },
             { name: '服務價值', href: '#value' }, 
             { name: '實戰案例', href: '#cases' }, 
             { name: '服務方案', href: '#services' }, 
+            { name: '線上課程', href: '#courses' }, 
             { name: '學員見證', href: '#testimonials' }, 
           ];
 
@@ -138,28 +136,43 @@
               title: '人生導航與自我認知',
               method: '紫微斗數命盤解析',
               timeframe: '諮詢當下即刻釐清',
-              description: '這不是迷信，而是你的人生大數據。我幫助你解析「原廠設定」，找出天賦優勢與性格盲點，就像拿到一張精確的地圖，不再迷路。',
+              description: (
+                <span>
+                  不再被迷惘消耗。這不是迷信，而是你的人生大數據。我為你解析<strong>「原廠設定」</strong>，精準定位天賦優勢與盲點。就像拿到一張精確的<strong>高解析度地圖</strong>，讓你不再迷路，篤定前行。
+                </span>
+              ),
               icon: <Icons.Map className="w-8 h-8 text-white" />,
               bg: "bg-gradient-to-br from-purple-600 to-indigo-700",
-              textColor: "text-white"
+              textColor: "text-white",
+              borderColor: "border-purple-400/30"
             },
             {
               title: '環境能量優化',
               method: '科學風水與水晶佈局',
               timeframe: '調整後 1-3 個月見效',
-              description: '環境是外在的大腦。運用環境心理學與礦石頻率，調整空間磁場。當環境對了，大腦運作效率自然提升，焦慮感下降。',
+              description: (
+                <span>
+                  環境是你<strong>延伸的大腦</strong>。運用環境心理學與礦石頻率，科學化校準空間磁場。當環境對了，焦慮感自然下降，大腦運作效率提升，讓家成為你最強的<strong>能量充電站</strong>。
+                </span>
+              ),
               icon: <Icons.Home className="w-8 h-8 text-indigo-600" />,
               bg: "bg-white",
-              textColor: "text-slate-800"
+              textColor: "text-slate-800",
+              borderColor: "border-indigo-100"
             },
             {
               title: '內在程式重寫',
               method: '潛意識調頻 (NLP/腦波)',
               timeframe: '持續練習 3-6 個月',
-              description: '透過腦波調頻與引導，深入潛意識修改那些「我不夠好」、「我不配」的限制性信念。從根源改變行為模式，顯化理想實相。',
+              description: (
+                <span>
+                  為何知道卻做不到？因為程式碼寫錯了。透過腦波調頻，深入潛意識拔除<strong>「我不夠好」</strong>的病毒信念。從根源<strong>改寫大腦迴路</strong>，打破慣性，讓你自然而然顯化出理想的實相版本。
+                </span>
+              ),
               icon: <Icons.Brain className="w-8 h-8 text-white" />,
               bg: "bg-slate-900",
-              textColor: "text-slate-200"
+              textColor: "text-slate-200",
+              borderColor: "border-slate-700"
             }
           ];
 
@@ -240,6 +253,46 @@
             }
           ];
 
+          // Online Courses Data
+          const courses = [
+            {
+              title: "紫微斗數全方位實戰班",
+              price: "NT$ 12,888",
+              description: "從零基礎到能獨立解盤。不背口訣，用邏輯理解星曜，掌握自己的人生說明書。",
+              icon: <Icons.Star size={24} className="text-yellow-300" />
+            },
+            {
+              title: "科學風水環境佈局班",
+              price: "NT$ 9,888",
+              description: "結合環境心理學與巒頭理氣。教你如何運用現有格局，打造旺財旺丁的能量磁場。",
+              icon: <Icons.Compass size={24} className="text-teal-300" />
+            },
+            {
+              title: "姓名學與能量鑑定班",
+              price: "NT$ 8,888",
+              description: "名字是隨身攜帶的咒語。解析文字頻率與五行生剋，為自己與孩子挑選加分好名。",
+              icon: <Icons.Target size={24} className="text-pink-300" />
+            },
+            {
+              title: "紫微牌卡直覺占卜班",
+              price: "NT$ 6,888",
+              description: "結合紫微底蘊與圖像直覺。無需生辰八字，隨時隨地快速決策，連結潛意識指引。",
+              icon: <Icons.Sparkles size={24} className="text-purple-300" />
+            },
+            {
+              title: "潛意識重塑與情緒管理班",
+              price: "NT$ 3,888",
+              description: "告別精神內耗。結合腦科學與冥想，教你識別情緒訊號，重塑潛意識迴路，找回內在的平靜與力量。",
+              icon: <Icons.Smile size={24} className="text-blue-300" />
+            },
+            {
+              title: "五行能量水晶配置班",
+              price: "NT$ 2,888",
+              description: "結合紫微與八字命盤分析，教你精準挑選並配戴缺少的五行能量（金木水火土），補足先天磁場。",
+              icon: <Icons.Gem size={24} className="text-cyan-300" />
+            }
+          ];
+
           const testimonials = [
             {
               text: "原本以為只是算命，結果像是在做大腦升級！小歐用工程師的邏輯解釋運勢，讓我找到了工作的突破口。",
@@ -306,7 +359,7 @@
                         {link.name}
                       </a>
                     ))}
-                    <a href="https://aurorakrystal.github.io/" target="_blank" rel="noreferrer" className="px-5 py-2 bg-slate-900 text-white rounded-full font-medium hover:bg-purple-600 transition-all flex items-center gap-2 shadow-lg hover:shadow-purple-200">
+                    <a href="https://aurorakrystal01.github.io/tarot/" target="_blank" rel="noreferrer" className="px-5 py-2 bg-slate-900 text-white rounded-full font-medium hover:bg-purple-600 transition-all flex items-center gap-2 shadow-lg hover:shadow-purple-200">
                       <Icons.Sparkles size={18} /> 紫靈牌占卜
                     </a>
                   </div>
@@ -324,7 +377,7 @@
                         {link.name}
                       </a>
                     ))}
-                    <a href="https://aurorakrystal.github.io/" target="_blank" rel="noreferrer" className="w-full text-center py-3 bg-slate-900 text-white rounded-lg font-medium mt-2">
+                    <a href="https://aurorakrystal01.github.io/tarot/" target="_blank" rel="noreferrer" className="w-full text-center py-3 bg-slate-900 text-white rounded-lg font-medium mt-2">
                       紫靈牌占卜
                     </a>
                   </div>
@@ -494,7 +547,7 @@
                     {valueProps.map((item, index) => (
                       <div 
                         key={index} 
-                        className={`group relative p-8 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${item.bg} flex flex-col border border-slate-100/10`}
+                        className={`group relative p-8 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${item.bg} flex flex-col border ${item.borderColor}`}
                       >
                         {item.textColor === "text-white" && (
                           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
@@ -511,15 +564,20 @@
                         </div>
 
                         <div className="z-10 flex-grow">
-                          <p className={`text-sm opacity-90 leading-relaxed mb-6 ${item.textColor}`}>
+                          <div className={`text-sm opacity-90 leading-relaxed mb-6 ${item.textColor}`}>
                             {item.description}
-                          </p>
+                          </div>
                         </div>
 
                         <div className={`z-10 mt-auto pt-4 border-t ${item.textColor === 'text-white' ? 'border-white/20' : 'border-slate-200'}`}>
                            <div className={`flex items-center gap-2 text-xs font-bold ${item.textColor}`}>
                               <Icons.Clock size={14} /> {item.timeframe}
                            </div>
+                        </div>
+                        
+                        {/* Hover Arrow */}
+                        <div className={`absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${item.textColor === 'text-white' ? 'text-white' : 'text-purple-600'}`}>
+                          <Icons.ArrowUpRight size={24} />
                         </div>
                       </div>
                     ))}
@@ -629,6 +687,37 @@
                         >
                           立即預約
                         </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* Online Courses Section (NEW) */}
+              <section id="courses" className="py-24 bg-slate-900 text-white">
+                <div className="container mx-auto px-6">
+                  <div className="text-center max-w-2xl mx-auto mb-16">
+                    <span className="text-purple-400 font-bold tracking-wider uppercase text-sm mb-2 block flex justify-center items-center gap-2">
+                        <Icons.GraduationCap size={18} /> Self-Paced Learning
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif">自主學習｜線上課程學院</h2>
+                    <p className="text-slate-400">如果不方便諮詢，也可以透過系統化課程，自己掌握命運的鑰匙。</p>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {courses.map((course, index) => (
+                      <div key={index} className="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 flex flex-col group">
+                        <div className="w-14 h-14 bg-slate-700 rounded-xl flex items-center justify-center mb-6 text-yellow-300 group-hover:scale-110 transition-transform duration-300 shadow-inner border border-white/10">
+                          {course.icon}
+                        </div>
+                        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-purple-200 transition-colors font-serif">{course.title}</h3>
+                        <p className="text-slate-300 text-sm mb-6 flex-grow leading-relaxed">{course.description}</p>
+                        <div className="mt-auto pt-4 border-t border-white/10">
+                          <div className="text-2xl font-bold text-yellow-300 mb-4">{course.price}</div>
+                          <a href="#contact" className="block w-full py-3 rounded-xl bg-white text-purple-900 font-bold text-center text-sm hover:bg-purple-100 transition-colors shadow-lg">
+                            了解課程詳情
+                          </a>
+                        </div>
                       </div>
                     ))}
                   </div>
